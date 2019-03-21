@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <link rel="stylesheet" href="fruits.css">
+        <title>Shopkeeper's Form</title>
+        <script src="fru.js"></script>
+    </head>
+    <body bgcolor="Tomato">
+        <h1> Please fill in this Form </h1>
+        
+        <fieldset>
+            <h2> 
+ <!-- This line is for the text box-->
+                Deliveries : <input name="Delivery" type="text" placeholder="Enter Your Past Deliveries"/><br>
+            </h2>
+            <span>
+                <input type= "Submit" value="Submit" onclick="recordDelivery();" />
+                <button onclick="myFunction()">Try it</button>
+
+             </span>
+      <div class="dropdown">
+  <button class="dropbtn">Select your fruit</button>
+  <div class="dropdown-content">
+    <a href="#">Apples</a>
+    <a href="#">Figs</a>
+    <a href="#">Grapes</a>
+    <a href="#">Oranges</a>
+    <a href="#">Strawberries</a>
+    <a href="#">Cantaloupe</a>
+    <a href="#">Mangoes</a>
+  </div>
+</div>
+        </fieldset>      
+        <fieldset>
+            <h2>
+                Sales:  <input name="Sales" type="text" placeholder="Enter Your Past Sales" /><br>
+                <span> 
+                    <input type= "Submit" value="Submit" onclick="recordSales();"alert("Your Past Sales have been successfully submitted")/>
+                </span>
+            </h2>
+        </fieldset>
+        <fieldset>
+            <h2>
+                Price :  <input name="Price"  type="text" placeholder="Enter your past Prices" /><br>
+                <span>
+                    <input type= "Submit"  value="Submit" onclick="recordPrice();"alert("Your Past Prices have been successfully submitted")/>
+                </span>
+            </h2>
+        </fieldset>
+        <ul id="productsList">
+        <!-- Leave this blank so we can dynamically populate it -->
+        </ul>
+    </body>
+    <script src="fru.js">
+    </script>
+</html>

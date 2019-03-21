@@ -1,0 +1,76 @@
+// var fruit = prompt('How many deliveries?');
+// document.getElementById("Delivery").innerHTML= var;
+// window.alert(var);
+
+Element.prototype.populate = function(array, item) {
+    for (let i = 0; i < array.length; i++) {
+        let li;
+	    
+	// add new element to store this data in if neccessary
+        let newElementNeeded = this.children.length <= i;
+        if (newElementNeeded) {
+            li = document.createElement("li");
+        } else {
+            li = this.children[i];
+        }
+	    
+        for (let j = 0; j < item.length; j++) {
+            let newComponentNeeded = li.children.length <= j;
+            let liComponent;
+            if (newComponentNeeded) {
+                liComponent = document.createElement(item[j].tag);
+            } else {
+                liComponent = li.children[j];
+            }
+            liComponent.innerHTML = array[i][item[j].val];
+            if (!newComponentNeeded) {
+                while (liComponent.attributes.length > 0) {
+                    liComponent.removeAttribute(liComponent.attributes[0].name);
+                }
+            }
+            for (let k = 0; k < item[j].properties.length; k++) {
+                liComponent.setAttribute(item[j].properties[k].attr, item[j].properties[k].val);
+            }
+            if (newComponentNeeded) {
+                li.appendChild(liComponent);
+            }
+        }
+	    
+        if (newElementNeeded) {
+            this.appendChild(li);
+        }
+    }
+	
+    // remove children elements not in new array	
+    while (this.children.length > array.length) {
+        this.removeChild(this.children[this.children.length - 1]);
+    }
+}
+
+var productsList = document.getElementById("productsList");
+
+var fruits = [
+  { name : "Apple", calories : 95 },
+  { name : "Banana", calories : 105 },
+  { name : "Orange", calories : 45 }
+];
+
+fruits.push({ name : "Peach", calories : 45 });
+
+var fruitItemStructure = [
+	{tag:"h3", properties : [{attr : "class", val : "header"}], val : "name"},
+	{tag:"h4", properties : [{attr : "class", val : "subheader"}], val : "calories"}
+];
+
+productsList.populate(fruits, fruitItemStructure);
+
+function recordDelivery() {
+  document.getElementById("productsList").innerHTML = "Your deliveries have been successfully updated";
+}
+function recordSales() {
+  document.getElementById("productsList").innerHTML = "Your Sales have been successfully updated";
+}
+function recordPrice() {
+  document.getElementById("productsList").innerHTML = "Your Prices have been successfully updated";
+}
+1
