@@ -1,76 +1,108 @@
-// var fruit = prompt('How many deliveries?');
-// document.getElementById("Delivery").innerHTML= var;
-// window.alert(var);
+function getQuantity(nameFruit) {
+    // TODO get quantity of fruit from server
+    return 50;
+}
 
-Element.prototype.populate = function(array, item) {
-    for (let i = 0; i < array.length; i++) {
-        let li;
-	    
-	// add new element to store this data in if neccessary
-        let newElementNeeded = this.children.length <= i;
-        if (newElementNeeded) {
-            li = document.createElement("li");
-        } else {
-            li = this.children[i];
+function getPrice(nameFruit) {
+    // TODO get price of fruit from server
+    return 5;
+}
+
+function getRecommendedPrice(nameFruit) {
+    // TODO get recommended price of fruit from server
+    return 6;
+}
+
+function getLight(nameFruit) {
+    // TODO get light of fruit from server
+    return 2;
+}
+
+function getAvgCostEstimate(nameFruit) {
+    // TODO get price of fruit from server
+    return 5;
+}
+
+function getHistory(nameFruit) {
+    // TODO get history of fruit from server
+    return "price changed to 5\ndelivery of 50";
+}
+
+function recordDelivery(nameFruit, quantity, costPerItem) {
+    // TODO send recorded delivery to server
+    alert("delivery of " + quantity + " " + nameFruit + "s at " + costPerItem);
+}
+
+function recordSale(nameFruit, quantity) {
+    // TODO send recorded sale to server
+    alert("sale of " + quantity + " " + nameFruit + "s")
+}
+
+function setPrice(nameFruit, price) {
+    // TODO send new price to server
+    alert("price of " + nameFruit + " changed to " + price);
+}
+
+function updatePrice(nameFruit) {
+    // TODO send to server
+    alert("updated price of " + nameFruit);
+}
+
+function loadFruit() {
+    var selectFruitBox = document.getElementById("fruits");
+    var selectedFruit = selectFruitBox.value;
+
+    var title = document.getElementById("title");
+    title.innerHTML = selectedFruit;
+
+    var quantity = document.getElementById("quantity");
+    var price = document.getElementById("price");
+    var recommendedPrice = document.getElementById("recommendedPrice");
+    var light = document.getElementById("light");
+    var avgCostEstimate = document.getElementById("avgCostEstimate");
+
+    quantity.innerHTML = getQuantity(selectedFruit);
+    price.innerHTML = getPrice(selectedFruit);
+    recommendedPrice.innerHTML = getRecommendedPrice(selectedFruit);
+    light.innerHTML = getLight(selectedFruit);
+    avgCostEstimate.innerHTML = getAvgCostEstimate(selectedFruit);
+
+    var history = document.getElementById("history");
+    history.innerHTML = getHistory(selectedFruit).replace(/\n/g, "<br>");
+}
+
+function executeCode() {
+    var editor = document.getElementById("editor");
+    var code = editor.value
+    var tokens = code.replace( /\n/g, " " ).split( " " ).filter(function(e){return e});;
+    
+    for (var i = 0; i < tokens.length; i++) {
+        var token = tokens[i];
+
+        if (token == "delivery") {
+            var quantity = tokens[i + 2];
+            var name = tokens[i + 3];
+            var price = tokens[i + 5];
+
+            recordDelivery(name, quantity, price);
         }
-	    
-        for (let j = 0; j < item.length; j++) {
-            let newComponentNeeded = li.children.length <= j;
-            let liComponent;
-            if (newComponentNeeded) {
-                liComponent = document.createElement(item[j].tag);
-            } else {
-                liComponent = li.children[j];
-            }
-            liComponent.innerHTML = array[i][item[j].val];
-            if (!newComponentNeeded) {
-                while (liComponent.attributes.length > 0) {
-                    liComponent.removeAttribute(liComponent.attributes[0].name);
-                }
-            }
-            for (let k = 0; k < item[j].properties.length; k++) {
-                liComponent.setAttribute(item[j].properties[k].attr, item[j].properties[k].val);
-            }
-            if (newComponentNeeded) {
-                li.appendChild(liComponent);
-            }
+        if (token == "sale") {
+            var nameFruit = tokens[i + 3];
+            var quantity = tokens[i + 2];
+
+            recordSale(nameFruit, quantity);
         }
-	    
-        if (newElementNeeded) {
-            this.appendChild(li);
+        if (token == "update") {
+            var nameFruit = tokens[i + 3];
+
+            updatePrice(nameFruit);
+        }
+        if (token == "set")  {
+            var nameFruit = tokens[i + 3];
+            var quantity = tokens[i + 5];
+
+            setPrice(nameFruit, quantity);
+
         }
     }
-	
-    // remove children elements not in new array	
-    while (this.children.length > array.length) {
-        this.removeChild(this.children[this.children.length - 1]);
-    }
 }
-
-var productsList = document.getElementById("productsList");
-
-var fruits = [
-  { name : "Apple", calories : 95 },
-  { name : "Banana", calories : 105 },
-  { name : "Orange", calories : 45 }
-];
-
-fruits.push({ name : "Peach", calories : 45 });
-
-var fruitItemStructure = [
-	{tag:"h3", properties : [{attr : "class", val : "header"}], val : "name"},
-	{tag:"h4", properties : [{attr : "class", val : "subheader"}], val : "calories"}
-];
-
-productsList.populate(fruits, fruitItemStructure);
-
-function recordDelivery() {
-  document.getElementById("productsList").innerHTML = "Your deliveries have been successfully updated";
-}
-function recordSales() {
-  document.getElementById("productsList").innerHTML = "Your Sales have been successfully updated";
-}
-function recordPrice() {
-  document.getElementById("productsList").innerHTML = "Your Prices have been successfully updated";
-}
-1

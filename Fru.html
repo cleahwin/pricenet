@@ -1,56 +1,31 @@
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <link rel="stylesheet" href="fruits.css">
-        <title>Shopkeeper's Form</title>
-        <script src="fru.js"></script>
-    </head>
-    <body bgcolor="Tomato">
-        <h1> Please fill in this Form </h1>
-        
-        <fieldset>
-            <h2> 
- <!-- This line is for the text box-->
-                Deliveries : <input name="Delivery" type="text" placeholder="Enter Your Past Deliveries"/><br>
-            </h2>
-            <span>
-                <input type= "Submit" value="Submit" onclick="recordDelivery();" />
-                <button onclick="myFunction()">Try it</button>
+<html>
+<title>Perfect Price</title>
+<head>
+    <script type="text/javascript" src="fru.js"></script>
+    <link rel="stylesheet" type="text/css" href="fruits.css">
+</head>
+<body>
 
-             </span>
-      <div class="dropdown">
-  <button class="dropbtn">Select your fruit</button>
-  <div class="dropdown-content">
-    <a href="#">Apples</a>
-    <a href="#">Figs</a>
-    <a href="#">Grapes</a>
-    <a href="#">Oranges</a>
-    <a href="#">Strawberries</a>
-    <a href="#">Cantaloupe</a>
-    <a href="#">Mangoes</a>
-  </div>
-</div>
-        </fieldset>      
-        <fieldset>
-            <h2>
-                Sales:  <input name="Sales" type="text" placeholder="Enter Your Past Sales" /><br>
-                <span> 
-                    <input type= "Submit" value="Submit" onclick="recordSales();"alert("Your Past Sales have been successfully submitted")/>
-                </span>
-            </h2>
-        </fieldset>
-        <fieldset>
-            <h2>
-                Price :  <input name="Price"  type="text" placeholder="Enter your past Prices" /><br>
-                <span>
-                    <input type= "Submit"  value="Submit" onclick="recordPrice();"alert("Your Past Prices have been successfully submitted")/>
-                </span>
-            </h2>
-        </fieldset>
-        <ul id="productsList">
-        <!-- Leave this blank so we can dynamically populate it -->
-        </ul>
-    </body>
-    <script src="fru.js">
-    </script>
+    <select name="Fruits" onchange="loadFruit();" id="fruits">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+    </select>
+
+    <h1 id="title"></h1>
+
+    <ul>
+        <li id="quantity"></li>
+        <li id="price"></li>
+        <li id="recommendedPrice"></li>
+        <li id="light"></li>
+        <li id="avgCostEstimate"></li>
+    </ul>
+
+    <p id="history"></p>
+
+    <textarea rows="4" cols="50" id="editor">
+    </textarea>
+    <button id="executeButton" onclick="executeCode()">Execute</button>
+</body>
 </html>
