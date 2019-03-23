@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<title>Perfect Price</title>
+<head>
+    <script type="text/javascript" src="fru.js"></script>
+    <link rel="stylesheet" type="text/css" href="fruits.css">
+</head>
+<body>
+
+    <select name="Fruits" onchange="loadFruit();" id="fruits">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+    </select>
+
+    <h1 id="title"></h1>
+
+    <ul>
+        <li id="quantity"></li>
+        <li id="price"></li>
+        <li id="recommendedPrice"></li>
+        <li id="light"></li>
+        <li id="avgCostEstimate"></li>
+    </ul>
+
+    <p id="history"></p>
+
+    <textarea rows="4" cols="50" id="editor">
+    </textarea>
+    <button id="executeButton" onclick="executeCode()">Execute</button>
+</body>
+</html>
