@@ -1,50 +1,61 @@
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
 function getQuantity(nameFruit) {
-    // TODO get quantity of fruit from server
-    return 50;
+    // get quantity of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-quantity");
 }
 
 function getPrice(nameFruit) {
-    // TODO get price of fruit from server
-    return 5;
+    // get price of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-price");
 }
 
 function getRecommendedPrice(nameFruit) {
-    // TODO get recommended price of fruit from server
-    return 6;
+    // get recommended price of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-recommended-price");
 }
 
 function getLight(nameFruit) {
-    // TODO get light of fruit from server
-    return 2;
+    // get light of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-light");
 }
 
 function getAvgCostEstimate(nameFruit) {
-    // TODO get price of fruit from server
-    return 5;
+    // get approximated cost of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-avg-cost-estimate");
 }
 
 function getHistory(nameFruit) {
-    // TODO get history of fruit from server
-    return "price changed to 5\ndelivery of 50";
+    // get history of fruit from server
+    return httpGet("http://localhost:8080/" + nameFruit + "/get-history");
 }
 
 function recordDelivery(nameFruit, quantity, costPerItem) {
-    // TODO send recorded delivery to server
+    // send recorded delivery to server
+    return httpGet("http://localhost:8080/" + nameFruit + "/record-delivery/" + quantity + "/" + costPerItem);
     alert("delivery of " + quantity + " " + nameFruit + "s at " + costPerItem);
 }
 
 function recordSale(nameFruit, quantity) {
-    // TODO send recorded sale to server
+    // send recorded sale to server
+    return httpGet("http://localhost:8080/" + nameFruit + "/record-sale/" + quantity);
     alert("sale of " + quantity + " " + nameFruit + "s")
 }
 
 function setPrice(nameFruit, price) {
-    // TODO send new price to server
+    // send new price to server
+    return httpGet("http://localhost:8080/" + nameFruit + "/set-price/" + price);
     alert("price of " + nameFruit + " changed to " + price);
 }
 
 function updatePrice(nameFruit) {
-    // TODO send to server
+    return httpGet("http://localhost:8080/" + nameFruit + "/update-price/");
     alert("updated price of " + nameFruit);
 }
 
@@ -61,11 +72,11 @@ function loadFruit() {
     var light = document.getElementById("light");
     var avgCostEstimate = document.getElementById("avgCostEstimate");
 
-    quantity.innerHTML = getQuantity(selectedFruit);
-    price.innerHTML = getPrice(selectedFruit);
-    recommendedPrice.innerHTML = getRecommendedPrice(selectedFruit);
-    light.innerHTML = getLight(selectedFruit);
-    avgCostEstimate.innerHTML = getAvgCostEstimate(selectedFruit);
+    quantity.innerHTML = "Quantity: " + getQuantity(selectedFruit);
+    price.innerHTML = "Price:" + getPrice(selectedFruit);
+    recommendedPrice.innerHTML ="Reccomended Price: " + "$" + getRecommendedPrice(selectedFruit);
+    light.innerHTML = "Light: " + getLight(selectedFruit);
+    avgCostEstimate.innerHTML = "Average Cost Estimate: " + getAvgCostEstimate(selectedFruit);
 
     var history = document.getElementById("history");
     history.innerHTML = getHistory(selectedFruit).replace(/\n/g, "<br>");
