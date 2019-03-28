@@ -6,14 +6,14 @@
     <link rel="stylesheet" type="text/css" href="fruits.css">
 </head>
 <body>
+    
+    <h1 id="title">Please Select A Fruit</h1>
 
-    <select name="Fruits" onchange="loadFruit();" id="fruits">
-      <option value="apple">Apple</option>
-      <option value="banana">Banana</option>
-    </select>
-
-    <h1 id="title"></h1>
-
+            <select name="Fruits" onchange="loadFruit();" id="fruits">
+            <option value="Pear">Pear</option>
+            <option value="Banana">Banana</option>
+             <option value="Orange">Orange</option>
+            </select>
     <ul>
         <li id="quantity"></li>
         <li id="price"></li>
@@ -21,11 +21,24 @@
         <li id="light"></li>
         <li id="avgCostEstimate"></li>
     </ul>
-
+    <h2>History</h2>
     <p id="history"></p>
 
-    <textarea rows="4" cols="50" id="editor">
-    </textarea>
+    <h2> Controller</h2>
+    <p>The Controller lets you enter in you fruit data</p>
+        <p> Here is a general format for the functions you can do in this language:</p>
+        <ul>
+            <li>update price of <i>fruit name</i> - Updates price of fruit to Reccomended Price</li>
+
+                                       <li>set price of <i>fruit name</i> to <i>new price</i> - Choose new price for fruit </li>
+
+                                      <li>delivery of <i>number delivered fruit name</i> for <i>cost</i> - Record Delivery for fruit at cost bought at</li>
+
+                                      <li>sale of <i>sale amount</i> <i>fruit name</i> - Record Sale for Fruit and recieved cost($)</li>
+        </ul>
+
+    <p>Please do not put bullet points.</p>
+    <textarea rows="6" cols="50" id="editor" placeholder="Please enter your past data. Look below for instructions of how to write the Data"></textarea>
     <button id="executeButton" onclick="executeCode()">Execute</button>
 </body>
 </html>
